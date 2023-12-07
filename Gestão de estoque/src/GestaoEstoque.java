@@ -18,10 +18,9 @@ public class GestaoEstoque {
 
   // Visualizar doações cadastradas
   public String mostrarDoacoesCadastradas() {
-    
     String mensagem = "";
     for (Doacao d : this.doacoesCadastradas) {
-      mensagem += "\nAs informações das doações cadastradas são: \n\n ";
+      mensagem += "\nAs informações das doações cadastradas são: \n ";
       mensagem += "\n ID: " +
           d.id +
           "\n Categoria: " +
@@ -30,26 +29,9 @@ public class GestaoEstoque {
           d.descricao +
           "\n Quantidade: " +
           d.quantidade;
-
-        if (d.categoria == "Dinheiro") {
-          d.quantidade = d.dinheiro;
-
-          mensagem += "\n ID: " +
-              d.id +
-              "\n Categoria: " +
-              d.categoria +
-              "\n Descrição:" +
-              d.descricao +
-              "\n Valor:" +
-              d.dinheiro;
-        }
-
-      }
-       return mensagem;
     }
-
-   
-  
+    return mensagem;
+  }
 
   // Editar descrição doação
   public String alterarDescricaoDoacao(int id) {
@@ -94,7 +76,7 @@ public class GestaoEstoque {
     for (Doacao d : this.doacoesCadastradas) {
       encontrado = true;
       if (d.id == id) {
-        d.categoria = JOptionPane.showInputDialog("Digite a nova categoria da doação: ");
+        d.categoria = JOptionPane.showInputDialog("Digite o novo ID do cadastro: ");
       }
     }
     if (encontrado == true) {
@@ -109,9 +91,16 @@ public class GestaoEstoque {
   public String deletarDoacao(int id) {
 
     this.doacoesCadastradas.remove(id);
-    return "Tarefa removida com sucesso!";
+    return "Cadastro removido com sucesso!";
   }
 
+
+
+
+
+
+
+  
   // SOBRE O ARRAY DE DOAÇÕES EM ESTOQUE:
 
   // Dar entrada na doação em estoque
