@@ -75,11 +75,9 @@ public class Principal {
                                     System.exit(0);
                                     break;
                             }
-                            break;
 
                         case 2:
                         EntradaSaida.mostrarDoacoesCadastradas(ge.mostrarDoacoesCadastradas());
-                        EntradaSaida.escolherOpcaoMenuPrincipal();
                         break;
 
                     }
@@ -128,9 +126,6 @@ public class Principal {
                         // Editar nome voluntário
                         break;
 
-                        }
-
-                            break;
                         case 4:
                             EntradaSaida.solicitarId("ID");
                             JOptionPane.showMessageDialog(null, ge.deletarDoacao(id));
@@ -140,9 +135,11 @@ public class Principal {
                             EntradaSaida.escolherOpcaoMenus();
                             break;
             }
+            
 
-        } while (opcaoMenus != 0);
-    }
+        } 
+    } while (opcaoMenus != 0);
+}
 }
 
 
