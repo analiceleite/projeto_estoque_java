@@ -7,15 +7,25 @@ public class GestaoVoluntario {
   public ArrayList<Voluntario> listaDeVoluntarios = new ArrayList<Voluntario>();
 
   public void adicionarVoluntario(Voluntario Voluntario) {
+    int id = 1;
+    for (Voluntario v: this.listaDeVoluntarios) {
+      if ( v.idVoluntario >= id ) {
+        id = v.idVoluntario + 1;
+      }
+    }
+    Voluntario.idVoluntario = id;
     this.listaDeVoluntarios.add(Voluntario);
   }
 
   // Mostrar voluntários cadastrados
   public String mostrarVoluntariosCadastrados() {
     String mensagem = "";
+    
     for (Voluntario v : this.listaDeVoluntarios) {
-      mensagem += "\nOs voluntários cadastrados no sistema são: \n ";
-      mensagem += "\n Nome: " +
+      mensagem += "\n\nOs voluntários cadastrados no sistema são: \n ";
+      mensagem += "\n ID: " +
+          v.idVoluntario +
+          "\n Nome: " +
           v.nomeVoluntario +
           "\n Idade: " +
           v.idadeVoluntario +

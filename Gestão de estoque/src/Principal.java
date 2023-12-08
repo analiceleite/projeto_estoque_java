@@ -30,59 +30,54 @@ public class Principal {
 
                             switch (opcaoCategorias) {
                                 case 1:
-                                    d.id = Integer.parseInt(EntradaSaida.SolicitarDadosPessoais("Insira o ID do cadastro: "));
                                     d.descricao = EntradaSaida.SolicitarDadosPessoais("Insira a descrição da doação: ");
                                     d.quantidade = EntradaSaida.SolicitarDadosPessoais("Insira a quantidade: ");
                                     d.categoria = "Vestuário";
                                     ge.cadastrarDoacao(d);
-                                    EntradaSaida.escolherOpcaoMenuPrincipal();
+                                    EntradaSaida.escolherOpcaoMenus();
                                     break;
                                 case 2:
-                                    d.id = Integer.parseInt(EntradaSaida.SolicitarDadosPessoais("Insira o ID do cadastro: "));
                                     d.descricao = EntradaSaida.SolicitarDadosPessoais("Insira a descrição da doação: ");
                                     d.quantidade = EntradaSaida.SolicitarDadosPessoais("Insira a quantidade: ");
                                     d.categoria = "Alimento";
                                     ge.cadastrarDoacao(d);
-                                    EntradaSaida.escolherOpcaoMenuPrincipal();
+                                    EntradaSaida.escolherOpcaoMenus();
                                     break;
                                 case 3: 
-                                    d.id = Integer.parseInt(EntradaSaida.SolicitarDadosPessoais("Insira o ID do cadastro: "));
                                     d.descricao = EntradaSaida.SolicitarDadosPessoais("Insira a descrição da doação: ");
                                     d.quantidade = EntradaSaida.SolicitarDadosPessoais("Insira a quantidade: ");
                                     d.categoria = "Móveis";
                                     ge.cadastrarDoacao(d);
-                                    EntradaSaida.escolherOpcaoMenuPrincipal();
-                                    break;
-                                case 4:
-                                    d.id = Integer.parseInt(EntradaSaida.SolicitarDadosPessoais("Insira o ID do cadastro: "));
-                                    d.categoria = "Dinheiro";
-                                    d.descricao = EntradaSaida.SolicitarDadosPessoais("Insira a descrição (este campo é opcional):");
-
-                                    // while (doarDinheiro == false) {
-                                    // d.dinheiro = EntradaSaida.SolicitarDadosPessoais("Insira o valor: ");
-                                    // Validacao.validarSeForDinheiro(d);
-                                    // }
-
-                                    ge.cadastrarDoacao(d);
-                                    EntradaSaida.escolherOpcaoMenuPrincipal();
-                                    break;
-
-                                case 5:
                                     EntradaSaida.escolherOpcaoMenus();
                                     break;
-
-                                default:
-                                    System.exit(0);
+                                case 4:
+                                    d.categoria = "Dinheiro";
+                                    d.descricao = EntradaSaida.SolicitarDadosPessoais("Insira a descrição (este campo é opcional):");
+                                    d.quantidade = EntradaSaida.SolicitarDadosPessoais("Insira o valor: ");
+                                    ge.cadastrarDoacao(d);
+                                    EntradaSaida.escolherOpcaoMenus();
                                     break;
                             }
-
+                            break;
                         case 2:
-                        EntradaSaida.mostrarDoacoesCadastradas(ge.mostrarDoacoesCadastradas());
+                            EntradaSaida.mostrarDoacoesCadastradas(ge.mostrarDoacoesCadastradas());
+                        break;
+
+                        case 3:
+                        // Alterar descrição de alguma doação:
+                            EntradaSaida.solicitarId("ID");
+                            JOptionPane.showMessageDialog(null, ge.alterarDescricaoDoacao(id));
+                        break;
+
+                        case 4:
+                        // Excluir cadastro de alguma doação:
+                            EntradaSaida.solicitarId("ID");
+                            JOptionPane.showMessageDialog(null, ge.deletarDoacao(id));
                         break;
 
                     }
 
-
+                    break;
                 case 2:
 
                     EntradaSaida.escolherOpcaoMenuEstoque();
@@ -90,53 +85,52 @@ public class Principal {
                     switch (opcaoMenuEstoque) {
                     case 1:
                     // Dar entrada em doações para o estoque
-                    break;
+                        break;
                     case 2:
                     // Consultar doações em estoque
-                    break;
+                        break;
                     case 3:
                     // Consultar doações por categoria
-                    break;
-
-                    default:
-
-                    break;
+                        break;
+                    case 4:
+                    EntradaSaida.escolherOpcaoMenuPrincipal();
+                        break;
                     }
 
                 case 3:
-                EntradaSaida.escolherOpcaoMenuVoluntario();
+                
+                opcaoMenuVoluntario = EntradaSaida.escolherOpcaoMenuVoluntario();
                 switch (opcaoMenuVoluntario) {
                     case 1:
                         Voluntario v = new Voluntario();
-                        v.idVoluntario = Integer.parseInt(EntradaSaida.SolicitarDadosPessoais("Insira o ID do voluntário: "));
                         v.nomeVoluntario = EntradaSaida.SolicitarDadosPessoais("Informe o nome do voluntário: ");
                         while (voluntarioValido == false) {
                             v.idadeVoluntario = Integer.parseInt(EntradaSaida.SolicitarDadosPessoais("Informe a idade (o voluntário deve ser acima de 18 anos): "));
                             voluntarioValido = Validacao.validarIdadeVoluntario(v.idadeVoluntario);
                         }
                         v.enderecoVoluntario = EntradaSaida.SolicitarDadosPessoais("Informe o endereço: ");
+                        v.cpfVoluntario = EntradaSaida.SolicitarDadosPessoais("Informe o CPF: ");
                         v.telefone = EntradaSaida.SolicitarDadosPessoais("Informe o telefone: ");
                         gv.adicionarVoluntario(v);
                         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-                    break;
+                        break;
                     case 2:
                         EntradaSaida.mostrarCadastroVoluntario(gv.mostrarVoluntariosCadastrados());
                         break;
                     case 3:
                         // Editar nome voluntário
+
                         break;
-
-                        case 4:
-                            EntradaSaida.solicitarId("ID");
-                            JOptionPane.showMessageDialog(null, ge.deletarDoacao(id));
-                            EntradaSaida.escolherOpcaoMenuPrincipal();
-                            break;
-                        case 5:
-                            EntradaSaida.escolherOpcaoMenus();
-                            break;
-            }
-            
-
+                    case 4:
+                        EntradaSaida.solicitarId("ID");
+                        JOptionPane.showMessageDialog(null, ge.deletarDoacao(id));
+                        EntradaSaida.escolherOpcaoMenuPrincipal();
+                        break;
+                    case 5:
+                        EntradaSaida.escolherOpcaoMenus();
+                        break;
+                }
+                break;    
         } 
     } while (opcaoMenus != 0);
 }

@@ -13,23 +13,39 @@ public class GestaoEstoque {
   public ArrayList<Doacao> doacoesCadastradas = new ArrayList<Doacao>();
 
   public void cadastrarDoacao(Doacao Doacao) {
+    int id = 1;
+    for (Doacao d : this.doacoesCadastradas) {
+      if ( d.id >= id ) {
+        id = d.id + 1;
+      }
+    }
+    Doacao.id = id;
     this.doacoesCadastradas.add(Doacao);
   }
 
   // Visualizar doações cadastradas
   public String mostrarDoacoesCadastradas() {
     String mensagem = "";
+    String quantidadeString = "";
+
     for (Doacao d : this.doacoesCadastradas) {
-      mensagem += "\nAs informações das doações cadastradas são: \n ";
+      if (d.categoria == "Dinheiro") {
+        quantidadeString = "Valor";
+      } else {
+        quantidadeString = "Quantidade";
+      }
+      mensagem += "\n\nAs informações das doações cadastradas são: \n ";
       mensagem += "\n ID: " +
           d.id +
           "\n Categoria: " +
           d.categoria +
           "\n Descrição: " +
           d.descricao +
-          "\n Quantidade: " +
+          "\n "+ quantidadeString +": " +
           d.quantidade;
     }
+
+
     return mensagem;
   }
 
@@ -50,25 +66,7 @@ public class GestaoEstoque {
     }
 
   }
-
-  // Editar id doação
-  public String alterarIdDoacao(int id) {
-    boolean encontrado = false;
-
-    for (Doacao d : this.doacoesCadastradas) {
-      encontrado = true;
-      if (d.id == id) {
-        d.id = Integer.parseInt(JOptionPane.showInputDialog("Digite o novo ID do cadastro: "));
-      }
-    }
-    if (encontrado == true) {
-      return ("ID alterado com sucesso! ");
-    } else {
-      return ("Cadastro não encontrado! ");
-    }
-
-  }
-
+  
   // Editar categoria doação
   public String alterarCategoriaDoacao(int id) {
     boolean encontrado = false;
@@ -89,18 +87,12 @@ public class GestaoEstoque {
 
   // Excluir doação
   public String deletarDoacao(int id) {
-
     this.doacoesCadastradas.remove(id);
     return "Cadastro removido com sucesso!";
   }
 
 
 
-
-
-
-
-  
   // SOBRE O ARRAY DE DOAÇÕES EM ESTOQUE:
 
   // Dar entrada na doação em estoque

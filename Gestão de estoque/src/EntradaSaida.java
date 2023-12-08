@@ -18,7 +18,7 @@ public class EntradaSaida {
 
     public static int escolherOpcaoMenuPrincipal() {
 
-    String s1[] = {"1 - Cadastrar doação", "2 - Visualizar doações cadastradas", "3 - Alterar descrição de alguma doação", "4 - Excluir cadastro de alguma doação", "5 - Voltar ao menu inicial" };
+    String s1[] = {"1 - Cadastrar doação", "2 - Visualizar doações cadastradas", "3 - Alterar descrição de alguma doação", "4 - Excluir cadastro de alguma doação"};
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar cadastro de doações ---------";
@@ -41,7 +41,7 @@ public class EntradaSaida {
     
     public static int escolherOpcaoMenuEstoque() {
 
-    String s1[] = {"1 - Dar entrada em doações para o estoque", "2 - Consultar doações em estoque por ID", "3 - Consultar doações por categoria" };
+    String s1[] = {"1 - Dar entrada em doações para o estoque", "2 - Consultar doações em estoque por ID", "3 - Consultar doações por categoria", "4 - Voltar ao menu principal" };
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar estoque de doações ---------";
