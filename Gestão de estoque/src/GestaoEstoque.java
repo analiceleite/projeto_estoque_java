@@ -15,7 +15,7 @@ public class GestaoEstoque {
   public void cadastrarDoacao(Doacao Doacao) {
     int id = 1;
     for (Doacao d : this.doacoesCadastradas) {
-      if ( d.id >= id ) {
+      if (d.id >= id) {
         id = d.id + 1;
       }
     }
@@ -27,6 +27,7 @@ public class GestaoEstoque {
   public String mostrarDoacoesCadastradas() {
     String mensagem = "";
     String quantidadeString = "";
+    mensagem += "\n\nAs informações das doações cadastradas são: \n ";
 
     for (Doacao d : this.doacoesCadastradas) {
       if (d.categoria == "Dinheiro") {
@@ -34,17 +35,16 @@ public class GestaoEstoque {
       } else {
         quantidadeString = "Quantidade";
       }
-      mensagem += "\n\nAs informações das doações cadastradas são: \n ";
+
       mensagem += "\n ID: " +
           d.id +
           "\n Categoria: " +
           d.categoria +
           "\n Descrição: " +
           d.descricao +
-          "\n "+ quantidadeString +": " +
-          d.quantidade;
+          "\n " + quantidadeString + ": " +
+          d.quantidade + "\n";
     }
-
 
     return mensagem;
   }
@@ -54,19 +54,21 @@ public class GestaoEstoque {
     boolean encontrado = false;
 
     for (Doacao d : this.doacoesCadastradas) {
-      encontrado = true;
+      encontrado = false;
       if (d.id == id) {
+        encontrado = true;
         d.descricao = JOptionPane.showInputDialog("Digite a nova descrição da sua doação: ");
+
       }
     }
     if (encontrado == true) {
-      return ("Descrição alterada com sucesso! ");
+      return "Descrição alterada com sucesso! ";
     } else {
-      return ("Cadastro da doação não encontrado! ");
-    }
 
+      return "Cadastro da doação não encontrado! ";
+    }
   }
-  
+
   // Editar categoria doação
   public String alterarCategoriaDoacao(int id) {
     boolean encontrado = false;
@@ -90,8 +92,6 @@ public class GestaoEstoque {
     this.doacoesCadastradas.remove(id);
     return "Cadastro removido com sucesso!";
   }
-
-
 
   // SOBRE O ARRAY DE DOAÇÕES EM ESTOQUE:
 

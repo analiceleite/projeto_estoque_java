@@ -1,13 +1,16 @@
+import javax.swing.JOptionPane;
+
 public class Validacao {
 
     // Validar usuário
     public static boolean validarIdadeVoluntario(int idadeVoluntario) {
         boolean voluntarioValido = false;
+        String mensagem = "";
+
         if (idadeVoluntario >= 18) {
             voluntarioValido = true;
 
             if (idadeVoluntario < 18) {
-
             }
             return voluntarioValido;
         }

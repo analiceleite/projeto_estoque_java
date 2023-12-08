@@ -34,28 +34,28 @@ public class Principal {
                                     d.quantidade = EntradaSaida.SolicitarDadosPessoais("Insira a quantidade: ");
                                     d.categoria = "Vestuário";
                                     ge.cadastrarDoacao(d);
-                                    EntradaSaida.escolherOpcaoMenus();
+                                    // EntradaSaida.escolherOpcaoMenus();
                                     break;
                                 case 2:
                                     d.descricao = EntradaSaida.SolicitarDadosPessoais("Insira a descrição da doação: ");
                                     d.quantidade = EntradaSaida.SolicitarDadosPessoais("Insira a quantidade: ");
                                     d.categoria = "Alimento";
                                     ge.cadastrarDoacao(d);
-                                    EntradaSaida.escolherOpcaoMenus();
+                                    // EntradaSaida.escolherOpcaoMenus();
                                     break;
                                 case 3: 
                                     d.descricao = EntradaSaida.SolicitarDadosPessoais("Insira a descrição da doação: ");
                                     d.quantidade = EntradaSaida.SolicitarDadosPessoais("Insira a quantidade: ");
                                     d.categoria = "Móveis";
                                     ge.cadastrarDoacao(d);
-                                    EntradaSaida.escolherOpcaoMenus();
+                                    // EntradaSaida.escolherOpcaoMenus();
                                     break;
                                 case 4:
                                     d.categoria = "Dinheiro";
                                     d.descricao = EntradaSaida.SolicitarDadosPessoais("Insira a descrição (este campo é opcional):");
                                     d.quantidade = EntradaSaida.SolicitarDadosPessoais("Insira o valor: ");
                                     ge.cadastrarDoacao(d);
-                                    EntradaSaida.escolherOpcaoMenus();
+                                    // EntradaSaida.escolherOpcaoMenus();
                                     break;
                             }
                             break;
@@ -65,7 +65,7 @@ public class Principal {
 
                         case 3:
                         // Alterar descrição de alguma doação:
-                            EntradaSaida.solicitarId("ID");
+                            id = EntradaSaida.solicitarId("ID");
                             JOptionPane.showMessageDialog(null, ge.alterarDescricaoDoacao(id));
                         break;
 
