@@ -6,7 +6,7 @@ public class EntradaSaida {
 
     public static int escolherOpcaoMenus() {
 
-    String s1[] = {"1 - Gerenciar cadastro de doações ", "2 - Gerenciar estoque de doações", "3 - Gerenciar cadastro de voluntários"};
+    String s1[] = {"1 - Doar ", "2 - Doações", "3 - Cadastro de doadores"};
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Sistema de gerenciamento de doações  ---------";
@@ -18,7 +18,7 @@ public class EntradaSaida {
 
     public static int escolherOpcaoMenuPrincipal() {
 
-    String s1[] = {"1 - Cadastrar doação", "2 - Visualizar doações cadastradas", "3 - Alterar descrição de alguma doação", "4 - Excluir cadastro de alguma doação"};
+    String s1[] = {"1 - Cadastrar doação", "2 - Visualizar doações cadastradas", "3 - Alterar descrição de alguma doação", "4 - Excluir cadastro de doação"};
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar cadastro de doações ---------";
@@ -41,7 +41,7 @@ public class EntradaSaida {
     
     public static int escolherOpcaoMenuEstoque() {
 
-    String s1[] = {"1 - Dar entrada em doações para o estoque", "2 - Consultar doações em estoque por ID", "3 - Consultar doações por categoria", "4 - Voltar ao menu principal" };
+    String s1[] = {"1 - Consultar doações em estoque", "2 - Consultar doações por categoria", "3 - Voltar ao menu principal" };
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar estoque de doações ---------";
@@ -53,7 +53,7 @@ public class EntradaSaida {
 
     public static int escolherOpcaoMenuVoluntario() {
 
-    String s1[] = {"1 - Realizar cadastro para voluntariado", "2 - Visualizar voluntários cadastrados", "3 - Editar nome voluntário"};
+    String s1[] = {"1 - Realizar cadastro doador", "2 - Visualizar doadores cadastrados", "3 - Editar nome doador"};
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar cadastro de voluntários ---------";

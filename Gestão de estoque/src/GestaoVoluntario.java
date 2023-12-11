@@ -8,33 +8,54 @@ public class GestaoVoluntario {
 
   public void adicionarVoluntario(Voluntario Voluntario) {
     int id = 1;
-    for (Voluntario v: this.listaDeVoluntarios) {
-      if ( v.idVoluntario >= id ) {
-        id = v.idVoluntario + 1;
+    for (Voluntario v : this.listaDeVoluntarios) {
+      if (v.getIdVoluntario() >= id) {
+        id = v.getIdVoluntario() + 1;
       }
     }
-    Voluntario.idVoluntario = id;
+    Voluntario.setIdVoluntario(id);
     this.listaDeVoluntarios.add(Voluntario);
+  }
+
+  // Cadastrar voluntários
+
+  public String cadastrarVoluntario() {
+
+    boolean voluntarioValido = Validacao.validarCadastroDoador(0);
+
+    Voluntario v = new Voluntario();
+
+    v.setNomeVoluntario(EntradaSaida.SolicitarDadosPessoais("Informe o nome do doador: "));
+    while (voluntarioValido == false) {
+      v.setIdadeVoluntario(Integer.parseInt(EntradaSaida.SolicitarDadosPessoais( "Informe a idade (o doador deve ser acima de 18 anos): ")));
+      voluntarioValido = Validacao.validarIdadeVoluntario(v.getIdadeVoluntario());
+    }
+    v.setEnderecoVoluntario(EntradaSaida.SolicitarDadosPessoais("Informe o endereço: "));
+    v.setCpfVoluntario(EntradaSaida.SolicitarDadosPessoais("Informe o CPF: "));
+    v.setTelefone(EntradaSaida.SolicitarDadosPessoais("Informe o telefone: "));
+    adicionarVoluntario(v);
+
+    return "Cadastro realizado com sucesso!";
   }
 
   // Mostrar voluntários cadastrados
   public String mostrarVoluntariosCadastrados() {
     String mensagem = "";
-    
+
     for (Voluntario v : this.listaDeVoluntarios) {
-      mensagem += "\n\nOs voluntários cadastrados no sistema são: \n ";
+      mensagem += "\n\nOs doadores cadastrados no sistema são: \n ";
       mensagem += "\n ID: " +
-          v.idVoluntario +
+          v.getIdVoluntario() +
           "\n Nome: " +
-          v.nomeVoluntario +
+          v.getNomeVoluntario() +
           "\n Idade: " +
-          v.idadeVoluntario +
+          v.getIdadeVoluntario() +
           "\n CPF: " +
-          v.cpfVoluntario +
+          v.getCpfVoluntario() +
           "\n Endereço: " +
-          v.enderecoVoluntario +
+          v.getEnderecoVoluntario() +
           "\n Telefone: " +
-          v.telefone;
+          v.getTelefone();
     }
     return mensagem;
   }
@@ -46,8 +67,8 @@ public class GestaoVoluntario {
     for (Voluntario v : this.listaDeVoluntarios) {
       int id = 0;
       encontrado = true;
-      if (v.idVoluntario == id) {
-        v.nomeVoluntario = JOptionPane.showInputDialog("Informe o novo nome do voluntário: ");
+      if (v.getIdVoluntario() == id) {
+        v.setNomeVoluntario(JOptionPane.showInputDialog("Informe o novo nome do doador: "));
       }
     }
     if (encontrado == true) {
@@ -58,5 +79,4 @@ public class GestaoVoluntario {
 
   }
 
-  
 }

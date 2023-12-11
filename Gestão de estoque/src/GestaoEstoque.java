@@ -15,11 +15,11 @@ public class GestaoEstoque {
   public void cadastrarDoacao(Doacao Doacao) {
     int id = 1;
     for (Doacao d : this.doacoesCadastradas) {
-      if (d.id >= id) {
-        id = d.id + 1;
+      if (d.getId() >= id) {
+        id = d.getId() + 1;
       }
     }
-    Doacao.id = id;
+    Doacao.setId(id);
     this.doacoesCadastradas.add(Doacao);
   }
 
@@ -30,20 +30,20 @@ public class GestaoEstoque {
     mensagem += "\n\nAs informações das doações cadastradas são: \n ";
 
     for (Doacao d : this.doacoesCadastradas) {
-      if (d.categoria == "Dinheiro") {
+      if (d.getCategoria() == "Dinheiro") {
         quantidadeString = "Valor";
       } else {
         quantidadeString = "Quantidade";
       }
 
       mensagem += "\n ID: " +
-          d.id +
+          d.getId() +
           "\n Categoria: " +
-          d.categoria +
+          d.getCategoria() +
           "\n Descrição: " +
-          d.descricao +
+          d.getDescricao() +
           "\n " + quantidadeString + ": " +
-          d.quantidade + "\n";
+          d.getQuantidade() + "\n";
     }
 
     return mensagem;
@@ -55,9 +55,9 @@ public class GestaoEstoque {
 
     for (Doacao d : this.doacoesCadastradas) {
       encontrado = false;
-      if (d.id == id) {
+      if (d.getId() == id) {
         encontrado = true;
-        d.descricao = JOptionPane.showInputDialog("Digite a nova descrição da sua doação: ");
+        d.setDescricao(JOptionPane.showInputDialog("Digite a nova descrição da sua doação: "));
 
       }
     }
@@ -67,24 +67,6 @@ public class GestaoEstoque {
 
       return "Cadastro da doação não encontrado! ";
     }
-  }
-
-  // Editar categoria doação
-  public String alterarCategoriaDoacao(int id) {
-    boolean encontrado = false;
-
-    for (Doacao d : this.doacoesCadastradas) {
-      encontrado = true;
-      if (d.id == id) {
-        d.categoria = JOptionPane.showInputDialog("Digite o novo ID do cadastro: ");
-      }
-    }
-    if (encontrado == true) {
-      return ("Categoria alterada com sucesso! ");
-    } else {
-      return ("Cadastro não encontrado! ");
-    }
-
   }
 
   // Excluir doação
