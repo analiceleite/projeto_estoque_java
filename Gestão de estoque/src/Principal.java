@@ -178,14 +178,14 @@ public class Principal {
                     } else {
                       JOptionPane.showMessageDialog(
                         null,
-                        "O produto " + id + " NÃo foi deletado."
+                        "O produto " + id + " não foi deletado."
                       );
                     }
                   }
                 } else {
                   JOptionPane.showMessageDialog(
                     null,
-                    "Id do produto inexistente"
+                    "Id do produto inexistente!"
                   );
                 }
 
@@ -231,7 +231,7 @@ public class Principal {
               String mensagem2 = ge.mostrarProdutoPorId(id);
               int qtdSaida = EntradaSaida.SolicitarDadosInt(
                 mensagem2 +
-                "\n\nInsira a quantidade que deseja doar deste produto: "
+                "\n\nInsira a quantidade que deseja dar baixa deste produto : "
               );
 
               boolean result2 = ge.removeQtdAtualProduto(id, qtdSaida);
