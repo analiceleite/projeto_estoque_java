@@ -10,17 +10,17 @@ public class GestaoEstoque {
     this.doacoesEstoque.add(Doacao);
   }
 
-  public ArrayList<Doacao> doacoesCadastradas = new ArrayList<Doacao>();
+  public ArrayList<Produto> doacoesCadastradas = new ArrayList<Produto>();
 
-  public void cadastrarDoacao(Doacao Doacao) {
+  public void cadastrarProduto(Produto Produto) {
     int id = 1;
-    for (Doacao d : this.doacoesCadastradas) {
+    for (Produto d : this.doacoesCadastradas) {
       if (d.getId() >= id) {
         id = d.getId() + 1;
       }
     }
-    Doacao.setId(id);
-    this.doacoesCadastradas.add(Doacao);
+    Produto.setId(id);
+    this.doacoesCadastradas.add(Produto);
   }
 
   // Visualizar doações cadastradas
@@ -29,7 +29,7 @@ public class GestaoEstoque {
     String quantidadeString = "";
     mensagem += "\n\nAs informações das doações cadastradas são: \n ";
 
-    for (Doacao d : this.doacoesCadastradas) {
+    for (Produto d : this.doacoesCadastradas) {
       if (d.getCategoria() == "Dinheiro") {
         quantidadeString = "Valor";
       } else {
@@ -41,9 +41,10 @@ public class GestaoEstoque {
           "\n Categoria: " +
           d.getCategoria() +
           "\n Descrição: " +
-          d.getDescricao() +
-          "\n " + quantidadeString + ": " +
-          d.getQuantidade() + "\n";
+          d.getNome() +
+          "\n " + quantidadeString + "Atual: " +
+          d.getQuantidadeAtual() + "\n" + quantidadeString + "Min: " +
+          d.getQuantidadeMin() + "\n";
     }
 
     return mensagem;
@@ -53,11 +54,11 @@ public class GestaoEstoque {
   public String alterarDescricaoDoacao(int id) {
     boolean encontrado = false;
 
-    for (Doacao d : this.doacoesCadastradas) {
+    for (Produto d : this.doacoesCadastradas) {
       encontrado = false;
       if (d.getId() == id) {
         encontrado = true;
-        d.setDescricao(JOptionPane.showInputDialog("Digite a nova descrição da sua doação: "));
+        d.setNome(JOptionPane.showInputDialog("Digite a nova descrição da sua doação: "));
 
       }
     }
@@ -70,14 +71,158 @@ public class GestaoEstoque {
   }
 
   // Excluir doação
-  public String deletarDoacao(int id) {
-    this.doacoesCadastradas.remove(id);
-    return "Cadastro removido com sucesso!";
+  public boolean deletarDoacao(int id) {
+    boolean result = false;
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        if (p.getQuantidadeAtual() == 0) {
+          try {
+            this.doacoesCadastradas.remove(p);
+            result = true;
+          } catch (Exception e) {
+            result = false;
+          }
+        }
+      }
+    }
+    return result;
   }
 
+  public boolean seExiste(int id) {
+    boolean encontrado = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        encontrado = true;
+      }
+    }
+    return encontrado;
+  }
+
+  public String mostrarProdutoPorId(int id) {
+    String mensagem = "";
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        mensagem += "O produto selecionado é:\n" 
+        + "\nID: " + p.getId() 
+        + "\nNome: " + p.getNome() 
+        + "\nCategoria: " + p.getCategoria()
+        + "\nQuantidade em estoque: " + p.getQuantidadeAtual()
+        + "\nQuantidade minima permitida: " + p.getQuantidadeMin();
+      }
+    }
+    return mensagem;
+  }
+
+  public boolean editarNomeProduto(int id, String nome) {
+    boolean result = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        try {
+          p.setNome(nome);
+          result = true;
+        } catch (Exception e) {
+          result = false;
+        }
+      }
+    }
+    return result;
+  }
+
+  public boolean editarCategoriaProduto(int id, String categoria) {
+    boolean result = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        try {
+          p.setCategoria(categoria);
+          result = true;
+        } catch (Exception e) {
+          result = false;
+        }
+      }
+    }
+    return result;
+  }
   // SOBRE O ARRAY DE DOAÇÕES EM ESTOQUE:
 
+public boolean editarQtdAtualProduto(int id, int qtdAtual) {
+    boolean result = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        try {
+          p.setQuantidadeAtual(qtdAtual);
+          result = true;
+        } catch (Exception e) {
+          result = false;
+        }
+      }
+    }
+    return result;
+}
+
+public boolean editarQtdMinProduto(int id, int qtdMin) {
+    boolean result = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        try {
+          p.setQuantidadeMin(qtdMin);
+          result = true;
+        } catch (Exception e) {
+          result = false;
+        }
+      }
+    }
+    return result;
+}
+
+public boolean addQtdAtualProduto(int id, int qtdAtual) {
+    boolean result = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        try {
+          int qtd = p.getQuantidadeAtual();
+          int novaQtd = qtd + qtdAtual;
+          p.setQuantidadeAtual(novaQtd);
+          result = true;
+        } catch (Exception e) {
+          result = false;
+        }
+      }
+    }
+    return result;
+}
   // Dar entrada na doação em estoque
+
+public boolean removeQtdAtualProduto(int id, int qtdSaida) {
+    boolean result = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getId() == id) {
+        try {
+          int qtd = p.getQuantidadeAtual();
+          int novaQtd = qtd - qtdSaida;
+          if (novaQtd >= 0) {
+            p.setQuantidadeAtual(novaQtd);
+            result = true;
+          } else {
+            JOptionPane.showMessageDialog(
+                        null,
+                        "Erro na alteração da quantidade atual do produto. Valor final menor do que o minimo permitido"
+                      );
+          }
+        } catch (Exception e) {
+          result = false;
+        }
+      }
+    }
+    return result;
+}
 
   // Consultar doações em estoque por ID
 

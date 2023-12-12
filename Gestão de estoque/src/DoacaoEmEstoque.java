@@ -1,6 +1,6 @@
 public class DoacaoEmEstoque {
     
-    Doacao d = new Doacao();
+    Produto d = new Produto();
 
     public int quantidadeMinima;
     public int quantidadeMaxima;

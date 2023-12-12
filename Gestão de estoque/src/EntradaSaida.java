@@ -6,7 +6,7 @@ public class EntradaSaida {
 
     public static int escolherOpcaoMenus() {
 
-    String s1[] = {"1 - Doar ", "2 - Doações", "3 - Cadastro de doadores"};
+    String s1[] = {"1 - Produtos ", "2 - Doações", "3 - Doadores"};
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Sistema de gerenciamento de doações  ---------";
@@ -18,7 +18,7 @@ public class EntradaSaida {
 
     public static int escolherOpcaoMenuPrincipal() {
 
-    String s1[] = {"1 - Cadastrar doação", "2 - Visualizar doações cadastradas", "3 - Alterar descrição de alguma doação", "4 - Excluir cadastro de doação"};
+    String s1[] = {"1 - Cadastrar produto", "2 - Visualizar produtos cadastrados", "3 - Editar"};
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar cadastro de doações ---------";
@@ -41,7 +41,7 @@ public class EntradaSaida {
     
     public static int escolherOpcaoMenuEstoque() {
 
-    String s1[] = {"1 - Consultar doações em estoque", "2 - Consultar doações por categoria", "3 - Voltar ao menu principal" };
+    String s1[] = {"1 - Doar", "2 - Retirar", "3 - Consultar", "4 - Voltar para o menu principal" };
 
     JComboBox c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar estoque de doações ---------";
@@ -63,12 +63,30 @@ public class EntradaSaida {
     return c1.getSelectedIndex()+1;
     }
 
-    public static String SolicitarDadosPessoais(String msg) {
+    public static String SolicitarDadosString(String msg) {
         return JOptionPane.showInputDialog(null, msg);
     }
 
+    public static int SolicitarDadosInt(String msg) {
+        int par01 = 0;
+        try {
+            par01 = Integer.parseInt(JOptionPane.showInputDialog(null, msg));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Digite um valor númerico inteiro maior que 0.");
+            par01 = EntradaSaida.SolicitarDadosInt(msg);
+        }
+       return par01;
+    }
+
     public static int solicitarId(String msg) {
-        return Integer.parseInt(JOptionPane.showInputDialog("Informe " + msg + " do cadastro que deseja consultar: "));
+        int par01 = 0;
+        try {
+            par01 = Integer.parseInt(JOptionPane.showInputDialog(msg));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Digite um cadastro valido");
+            par01 = EntradaSaida.solicitarId(msg);
+        }
+        return par01;
     }
 
     public static void mostrarDoacoesCadastradas(String mostrarDoacoesCadastradas) {
@@ -78,6 +96,31 @@ public class EntradaSaida {
     public static void mostrarCadastroVoluntario(String mostrarCadastroVoluntario) {
         JOptionPane.showMessageDialog(null, mostrarCadastroVoluntario);
     }
+
+    public static int produtoEditarOpcoes() {
+        
+    String s1[] = {"1 - Nome ", "2 - Categoria", "3 - Quantidade em estoque", "4 - Quantidade minima", "5 - Deletar"};
+
+    JComboBox c1 = new JComboBox<>(s1);
+    String mensagem = "--------- Edição do produto  ---------";
+    Object[] exibicaoUsuario = {mensagem, c1};
+    JOptionPane.showMessageDialog(null, exibicaoUsuario);
+
+    return c1.getSelectedIndex()+1;
+    }
+
+    public static int confirmacao(String msg) {
+        
+    String s1[] = {"1 - Não ", "2 - Sim"};
+
+    JComboBox c1 = new JComboBox<>(s1);
+    String mensagem = ""+msg;
+    Object[] exibicaoUsuario = {mensagem, c1};
+    JOptionPane.showMessageDialog(null, exibicaoUsuario);
+
+    return c1.getSelectedIndex()+1;
+    }
+    
 
     // System.out.println("Insira o seu usuário: ");
     // String user = System.console().readLine();

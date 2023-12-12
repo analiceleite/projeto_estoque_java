@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class GestaoVoluntario {
@@ -20,22 +19,31 @@ public class GestaoVoluntario {
   // Cadastrar voluntários
 
   public String cadastrarVoluntario() {
-
-    boolean voluntarioValido = Validacao.validarCadastroDoador(0);
+    boolean voluntarioValido;
 
     Voluntario v = new Voluntario();
 
-    v.setNomeVoluntario(EntradaSaida.SolicitarDadosPessoais("Informe o nome do doador: "));
-    while (voluntarioValido == false) {
-      v.setIdadeVoluntario(Integer.parseInt(EntradaSaida.SolicitarDadosPessoais( "Informe a idade (o doador deve ser acima de 18 anos): ")));
-      voluntarioValido = Validacao.validarIdadeVoluntario(v.getIdadeVoluntario());
-    }
-    v.setEnderecoVoluntario(EntradaSaida.SolicitarDadosPessoais("Informe o endereço: "));
-    v.setCpfVoluntario(EntradaSaida.SolicitarDadosPessoais("Informe o CPF: "));
-    v.setTelefone(EntradaSaida.SolicitarDadosPessoais("Informe o telefone: "));
+    v.setNomeVoluntario(
+      EntradaSaida.SolicitarDadosString("Informe o nome do doador: ")
+    );
+      v.setIdadeVoluntario(
+        Integer.parseInt(
+          EntradaSaida.SolicitarDadosString(
+            "Informe a idade (o doador deve ser acima de 18 anos): "
+          )
+        )
+      );
+      voluntarioValido =
+        Validacao.validarIdadeVoluntario(v.getIdadeVoluntario());
+    
+    v.setEnderecoVoluntario(
+      EntradaSaida.SolicitarDadosString("Informe o endereço: ")
+    );
+    v.setCpfVoluntario(EntradaSaida.SolicitarDadosString("Informe o CPF: "));
+    v.setTelefone(EntradaSaida.SolicitarDadosString("Informe o telefone: "));
     adicionarVoluntario(v);
 
-    return "Cadastro realizado com sucesso!";
+    return "Cadastro realizado com sucesso!\nSeu ID é: " + v.getIdVoluntario();
   }
 
   // Mostrar voluntários cadastrados
@@ -44,18 +52,19 @@ public class GestaoVoluntario {
 
     for (Voluntario v : this.listaDeVoluntarios) {
       mensagem += "\n\nOs doadores cadastrados no sistema são: \n ";
-      mensagem += "\n ID: " +
-          v.getIdVoluntario() +
-          "\n Nome: " +
-          v.getNomeVoluntario() +
-          "\n Idade: " +
-          v.getIdadeVoluntario() +
-          "\n CPF: " +
-          v.getCpfVoluntario() +
-          "\n Endereço: " +
-          v.getEnderecoVoluntario() +
-          "\n Telefone: " +
-          v.getTelefone();
+      mensagem +=
+        "\n ID: " +
+        v.getIdVoluntario() +
+        "\n Nome: " +
+        v.getNomeVoluntario() +
+        "\n Idade: " +
+        v.getIdadeVoluntario() +
+        "\n CPF: " +
+        v.getCpfVoluntario() +
+        "\n Endereço: " +
+        v.getEnderecoVoluntario() +
+        "\n Telefone: " +
+        v.getTelefone();
     }
     return mensagem;
   }
@@ -66,17 +75,34 @@ public class GestaoVoluntario {
 
     for (Voluntario v : this.listaDeVoluntarios) {
       int id = 0;
-      encontrado = true;
+
       if (v.getIdVoluntario() == id) {
-        v.setNomeVoluntario(JOptionPane.showInputDialog("Informe o novo nome do doador: "));
+        encontrado = true;
+        v.setNomeVoluntario(
+          JOptionPane.showInputDialog("Informe o novo nome do doador: ")
+        );
       }
     }
-    if (encontrado == true) {
-      return ("Nome alterado com sucesso! ");
-    } else {
-      return ("Cadastro não encontrado! ");
-    }
-
+    return ("Nome alterado com sucesso! ");
   }
 
+  public boolean validarCadastroDoador(int idVoluntario) {
+    boolean cadastroValido = false;
+    boolean voluntarioValido = false;
+
+    for (Voluntario v : this.listaDeVoluntarios) {
+      if (v.getIdVoluntario() == idVoluntario) {
+        voluntarioValido = true;
+      }
+    }
+    if (voluntarioValido == true) {
+        cadastroValido = true;
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Cadastro não encontrado! \nFaça o cadastro para dar sequência.");
+            // GestaoVoluntario gv = new GestaoVoluntario();
+            // EntradaSaida.mostrarCadastroVoluntario(gv.cadastrarVoluntario());
+        }
+    return cadastroValido;
+  }
 }

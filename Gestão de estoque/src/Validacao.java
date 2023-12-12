@@ -1,4 +1,4 @@
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane; 
 
 public class Validacao {
 
@@ -19,21 +19,22 @@ public class Validacao {
 
     // Validar cadastro usuário
 
-    public static boolean validarCadastroDoador(int idVoluntario) {
-        boolean cadastroValido = false;
-        int id = 0;
+    // public static boolean validarCadastroDoador(int idVoluntario) {
+        // boolean cadastroValido = false;
+        // int id = 0;
 
-        if (id == idVoluntario) {
-            cadastroValido = true;
+        // if (id == idVoluntario) {
+        //     cadastroValido = true;
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Cadastro não encontrado! Faça o cadastro para dar sequência.");
-                GestaoVoluntario gv = new GestaoVoluntario();
-                EntradaSaida.mostrarCadastroVoluntario(gv.cadastrarVoluntario());
-            }
-            return cadastroValido;
-        }
-    }
+        //     } else {
+        //         JOptionPane.showMessageDialog(null, "Cadastro não encontrado! \nFaça o cadastro para dar sequência.");
+        //         // GestaoVoluntario gv = new GestaoVoluntario();
+        //         // EntradaSaida.mostrarCadastroVoluntario(gv.cadastrarVoluntario());
+        //     }
+        //     return cadastroValido;
+        // }
+
+}
         
 
         
