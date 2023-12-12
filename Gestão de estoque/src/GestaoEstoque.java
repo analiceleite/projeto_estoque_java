@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class GestaoEstoque {
@@ -36,15 +35,22 @@ public class GestaoEstoque {
         quantidadeString = "Quantidade";
       }
 
-      mensagem += "\n ID: " +
-          d.getId() +
-          "\n Categoria: " +
-          d.getCategoria() +
-          "\n Descrição: " +
-          d.getNome() +
-          "\n " + quantidadeString + "Atual: " +
-          d.getQuantidadeAtual() + "\n" + quantidadeString + "Min: " +
-          d.getQuantidadeMin() + "\n";
+      mensagem +=
+        "\n ID: " +
+        d.getId() +
+        "\n Categoria: " +
+        d.getCategoria() +
+        "\n Descrição: " +
+        d.getNome() +
+        "\n " +
+        quantidadeString +
+        "Atual: " +
+        d.getQuantidadeAtual() +
+        "\n" +
+        quantidadeString +
+        "Min: " +
+        d.getQuantidadeMin() +
+        "\n";
     }
 
     return mensagem;
@@ -58,14 +64,14 @@ public class GestaoEstoque {
       encontrado = false;
       if (d.getId() == id) {
         encontrado = true;
-        d.setNome(JOptionPane.showInputDialog("Digite a nova descrição da sua doação: "));
-
+        d.setNome(
+          JOptionPane.showInputDialog("Digite a nova descrição da sua doação: ")
+        );
       }
     }
     if (encontrado == true) {
       return "Descrição alterada com sucesso! ";
     } else {
-
       return "Cadastro da doação não encontrado! ";
     }
   }
@@ -99,18 +105,128 @@ public class GestaoEstoque {
     return encontrado;
   }
 
+  public boolean seExisteByNome(String nome) {
+    boolean encontrado = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getNome() == nome) {
+        encontrado = true;
+      }
+    }
+    return encontrado;
+  }
+
+  public boolean seExisteByCategoria(String categoria) {
+    boolean encontrado = false;
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getCategoria() == categoria) {
+        encontrado = true;
+      }
+    }
+    return encontrado;
+  }
+
   public String mostrarProdutoPorId(int id) {
     String mensagem = "";
 
     for (Produto p : this.doacoesCadastradas) {
       if (p.getId() == id) {
-        mensagem += "O produto selecionado é:\n" 
-        + "\nID: " + p.getId() 
-        + "\nNome: " + p.getNome() 
-        + "\nCategoria: " + p.getCategoria()
-        + "\nQuantidade em estoque: " + p.getQuantidadeAtual()
-        + "\nQuantidade minima permitida: " + p.getQuantidadeMin();
+        mensagem +=
+          "O produto selecionado é:\n" +
+          "\nID: " +
+          p.getId() +
+          "\nNome: " +
+          p.getNome() +
+          "\nCategoria: " +
+          p.getCategoria() +
+          "\nQuantidade em estoque: " +
+          p.getQuantidadeAtual() +
+          "\nQuantidade minima permitida: " +
+          p.getQuantidadeMin();
       }
+    }
+    return mensagem;
+  }
+
+  public String mostrarProdutoPorNome(String nome) {
+    String mensagem = "";
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getNome() == nome) {
+        mensagem +=
+          "O produto selecionado é:\n" +
+          "\nID: " +
+          p.getId() +
+          "\nNome: " +
+          p.getNome() +
+          "\nCategoria: " +
+          p.getCategoria() +
+          "\nQuantidade em estoque: " +
+          p.getQuantidadeAtual() +
+          "\nQuantidade minima permitida: " +
+          p.getQuantidadeMin();
+      }
+    }
+    return mensagem;
+  }
+
+    public String mostrarProdutoPorCategoria(String categoria) {
+    String mensagem = "";
+
+    for (Produto p : this.doacoesCadastradas) {
+      if (p.getCategoria() == categoria) {
+        mensagem +=
+          "O produto selecionado é:\n" +
+          "\nID: " +
+          p.getId() +
+          "\nNome: " +
+          p.getNome() +
+          "\nCategoria: " +
+          p.getCategoria() +
+          "\nQuantidade em estoque: " +
+          p.getQuantidadeAtual() +
+          "\nQuantidade minima permitida: " +
+          p.getQuantidadeMin();
+      }
+    }
+    return mensagem;
+  }
+
+  public String mostrarProdutoComprar() {
+    String mensagem = "";
+    String quantidadeString = "";
+    mensagem += "\n\nAs informações das doações cadastradas são: \n ";
+
+    for (Produto p1 : this.doacoesCadastradas) {
+      if (p1.getCategoria() == "Dinheiro") {
+        quantidadeString = "Valor";
+      } else {
+        quantidadeString = "Quantidade";
+      }
+      for (Produto p : this.doacoesCadastradas) {
+        if (p.getQuantidadeAtual() <= p.getQuantidadeMin()) {
+          mensagem +=
+            "\n ID: " +
+            p.getId() +
+            "\n Categoria: " +
+            p.getCategoria() +
+            "\n Descrição: " +
+            p.getNome() +
+            "\n " +
+            quantidadeString +
+            "Atual: " +
+            p.getQuantidadeAtual() +
+            "\n" +
+            quantidadeString +
+            "Min: " +
+            p.getQuantidadeMin() +
+            "\n";
+        }
+      }
+    }
+    if (mensagem.length() < 50) {
+      mensagem = "Nenhum item encontrado!";
     }
     return mensagem;
   }
@@ -146,9 +262,10 @@ public class GestaoEstoque {
     }
     return result;
   }
+
   // SOBRE O ARRAY DE DOAÇÕES EM ESTOQUE:
 
-public boolean editarQtdAtualProduto(int id, int qtdAtual) {
+  public boolean editarQtdAtualProduto(int id, int qtdAtual) {
     boolean result = false;
 
     for (Produto p : this.doacoesCadastradas) {
@@ -162,9 +279,9 @@ public boolean editarQtdAtualProduto(int id, int qtdAtual) {
       }
     }
     return result;
-}
+  }
 
-public boolean editarQtdMinProduto(int id, int qtdMin) {
+  public boolean editarQtdMinProduto(int id, int qtdMin) {
     boolean result = false;
 
     for (Produto p : this.doacoesCadastradas) {
@@ -178,9 +295,9 @@ public boolean editarQtdMinProduto(int id, int qtdMin) {
       }
     }
     return result;
-}
+  }
 
-public boolean addQtdAtualProduto(int id, int qtdAtual) {
+  public boolean addQtdAtualProduto(int id, int qtdAtual) {
     boolean result = false;
 
     for (Produto p : this.doacoesCadastradas) {
@@ -196,10 +313,11 @@ public boolean addQtdAtualProduto(int id, int qtdAtual) {
       }
     }
     return result;
-}
+  }
+
   // Dar entrada na doação em estoque
 
-public boolean removeQtdAtualProduto(int id, int qtdSaida) {
+  public boolean removeQtdAtualProduto(int id, int qtdSaida) {
     boolean result = false;
 
     for (Produto p : this.doacoesCadastradas) {
@@ -212,9 +330,9 @@ public boolean removeQtdAtualProduto(int id, int qtdSaida) {
             result = true;
           } else {
             JOptionPane.showMessageDialog(
-                        null,
-                        "Erro na alteração da quantidade atual do produto. Valor final menor do que o minimo permitido"
-                      );
+              null,
+              "Erro na alteração da quantidade atual do produto. Valor final menor do que o minimo permitido"
+            );
           }
         } catch (Exception e) {
           result = false;
@@ -222,8 +340,7 @@ public boolean removeQtdAtualProduto(int id, int qtdSaida) {
       }
     }
     return result;
-}
-
+  }
   // Consultar doações em estoque por ID
 
   // Consultar doações por categoria

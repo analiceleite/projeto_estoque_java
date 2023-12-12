@@ -120,6 +120,17 @@ public class EntradaSaida {
 
     return c1.getSelectedIndex()+1;
     }
+
+    public static int escolherOpcaoMenuConsulta() {
+        String s1[] = {"1 - Itens para comprar", "2 - Consulta por ID", "3 - Consulta por nome", "4 - Consulta por categoria", "5 - Voltar para o menu principal"};
+
+        JComboBox c1 = new JComboBox<>(s1);
+        String mensagem = "--------- Consultas ---------";
+        Object[] exibicaoUsuario = {mensagem, c1};
+        JOptionPane.showMessageDialog(null, exibicaoUsuario);
+
+        return c1.getSelectedIndex()+1;
+    }
     
 
     // System.out.println("Insira o seu usuário: ");

@@ -13,6 +13,7 @@ public class Principal {
     int opcaoMenuEstoque = 0;
     int opcaoCategorias = 0;
     int opcaoMenuVoluntario = 0;
+    int opcaoMenuConsulta = 0;
     int id = 0;
 
     do {
@@ -25,9 +26,9 @@ public class Principal {
             EntradaSaida.solicitarId(
               "Acesso restrito!\nInsira seu ID de cadastro para continuar"
             );
-          //while (gv.validarCadastroDoador(id)) {
-          validarCadastroDoador = true;
-          if (validarCadastroDoador) {
+          //if (gv.validarCadastroDoador(id)) {
+          //validarCadastroDoador = true;
+          if (gv.validarCadastroDoador(id)) {
             opcaoMenuPrincipal = EntradaSaida.escolherOpcaoMenuPrincipal();
 
             switch (opcaoMenuPrincipal) {
@@ -88,7 +89,7 @@ public class Principal {
                   int produtoEditarOpcoes = EntradaSaida.produtoEditarOpcoes();
                   if (produtoEditarOpcoes == 1) { // Nome
                     String novoNome = EntradaSaida.SolicitarDadosString(
-                      mensagem+"\n\nInsira o novo nome do produto: "
+                      mensagem + "\n\nInsira o novo nome do produto: "
                     );
                     boolean result = ge.editarNomeProduto(id, novoNome);
                     if (result) {
@@ -105,13 +106,13 @@ public class Principal {
                   } else if (produtoEditarOpcoes == 2) { // Categoria
                     int novaCategoriaNum = EntradaSaida.escolherOpcaoMenuCategorias();
                     if (novaCategoriaNum == 1) {
-                        categoria = "Vestuário";
+                      categoria = "Vestuário";
                     } else if (novaCategoriaNum == 2) {
-                        categoria = "Alimento";
+                      categoria = "Alimento";
                     } else if (novaCategoriaNum == 3) {
-                        categoria = "Móveis";
+                      categoria = "Móveis";
                     } else if (novaCategoriaNum == 4) {
-                        categoria = "Dinheiro";
+                      categoria = "Dinheiro";
                     }
                     boolean result = ge.editarCategoriaProduto(id, categoria);
                     if (result) {
@@ -125,10 +126,9 @@ public class Principal {
                         "Erro na alteração da categoria do produto, favor tentar novamente"
                       );
                     }
-
                   } else if (produtoEditarOpcoes == 3) { // QuantidadeAtual
                     int qtdAtual = EntradaSaida.SolicitarDadosInt(
-                      mensagem+"\n\nInsira a quantidade atual do produto: "
+                      mensagem + "\n\nInsira a quantidade atual do produto: "
                     );
                     boolean result = ge.editarQtdAtualProduto(id, qtdAtual);
                     if (result) {
@@ -144,7 +144,7 @@ public class Principal {
                     }
                   } else if (produtoEditarOpcoes == 4) { // QuantidateMin
                     int qtdMin = EntradaSaida.SolicitarDadosInt(
-                      mensagem+"\n\nInsira a quantidade atual do produto: "
+                      mensagem + "\n\nInsira a quantidade atual do produto: "
                     );
                     boolean result = ge.editarQtdMinProduto(id, qtdMin);
                     if (result) {
@@ -159,20 +159,34 @@ public class Principal {
                       );
                     }
                   } else if (produtoEditarOpcoes == 5) { // Deletar
-                    int confirmacao = EntradaSaida.confirmacao(mensagem+"\n\nDeseja deletar o produto "+id+" ?");
+                    int confirmacao = EntradaSaida.confirmacao(
+                      mensagem + "\n\nDeseja deletar o produto " + id + " ?"
+                    );
                     if (confirmacao == 2) {
-                        boolean result = ge.deletarDoacao(id);
-                        if (result) {
-                            JOptionPane.showMessageDialog(null, "O produto "+id+" foi deletado com sucesso!");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "O produto "+id+" ainda possui itens em estoque.");
-                        }
+                      boolean result = ge.deletarDoacao(id);
+                      if (result) {
+                        JOptionPane.showMessageDialog(
+                          null,
+                          "O produto " + id + " foi deletado com sucesso!"
+                        );
+                      } else {
+                        JOptionPane.showMessageDialog(
+                          null,
+                          "O produto " + id + " ainda possui itens em estoque."
+                        );
+                      }
                     } else {
-                        JOptionPane.showMessageDialog(null, "O produto "+id+" NÃo foi deletado.");
+                      JOptionPane.showMessageDialog(
+                        null,
+                        "O produto " + id + " NÃo foi deletado."
+                      );
                     }
                   }
                 } else {
-                  JOptionPane.showMessageDialog(null, "Id do produto inexistente");
+                  JOptionPane.showMessageDialog(
+                    null,
+                    "Id do produto inexistente"
+                  );
                 }
 
                 break;
@@ -183,58 +197,124 @@ public class Principal {
           opcaoMenuEstoque = EntradaSaida.escolherOpcaoMenuEstoque();
           switch (opcaoMenuEstoque) {
             case 1: // Entrada estoque
-                EntradaSaida.mostrarDoacoesCadastradas(ge.mostrarDoacoesCadastradas());
-                id = EntradaSaida.solicitarId(
-                    "Insira a identificação do produto que deseja doar: "
-                  );
-                String mensagem = ge.mostrarProdutoPorId(id);
-                int qtdEntrada = EntradaSaida.SolicitarDadosInt(
-                      mensagem+"\n\nInsira a quantidade que deseja doar deste produto: "
-                    );
+              EntradaSaida.mostrarDoacoesCadastradas(
+                ge.mostrarDoacoesCadastradas()
+              );
+              id =
+                EntradaSaida.solicitarId(
+                  "Insira a identificação do produto que deseja doar: "
+                );
+              String mensagem = ge.mostrarProdutoPorId(id);
+              int qtdEntrada = EntradaSaida.SolicitarDadosInt(
+                mensagem +
+                "\n\nInsira a quantidade que deseja doar deste produto: "
+              );
 
-                    boolean result = ge.addQtdAtualProduto(id, qtdEntrada);
-                    if (result) {
-                      JOptionPane.showMessageDialog(
-                        null,
-                        ge.mostrarProdutoPorId(id)
-                      );
-                    } else {
-                      JOptionPane.showMessageDialog(
-                        null,
-                        "Erro na alteração da quantidade atual do produto, favor tentar novamente"
-                      );
-                    }
+              boolean result = ge.addQtdAtualProduto(id, qtdEntrada);
+              if (result) {
+                JOptionPane.showMessageDialog(null, ge.mostrarProdutoPorId(id));
+              } else {
+                JOptionPane.showMessageDialog(
+                  null,
+                  "Erro na alteração da quantidade atual do produto, favor tentar novamente"
+                );
+              }
               break;
             case 2: // Saida estoque
-                EntradaSaida.mostrarDoacoesCadastradas(ge.mostrarDoacoesCadastradas());
-                id = EntradaSaida.solicitarId(
-                    "Insira a identificação do produto que deseja doar: "
-                  );
-                String mensagem2 = ge.mostrarProdutoPorId(id);
-                int qtdSaida = EntradaSaida.SolicitarDadosInt(
-                      mensagem2+"\n\nInsira a quantidade que deseja doar deste produto: "
-                    );
+              EntradaSaida.mostrarDoacoesCadastradas(
+                ge.mostrarDoacoesCadastradas()
+              );
+              id =
+                EntradaSaida.solicitarId(
+                  "Insira a identificação do produto que deseja doar: "
+                );
+              String mensagem2 = ge.mostrarProdutoPorId(id);
+              int qtdSaida = EntradaSaida.SolicitarDadosInt(
+                mensagem2 +
+                "\n\nInsira a quantidade que deseja doar deste produto: "
+              );
 
-                    boolean result2 = ge.removeQtdAtualProduto(id, qtdSaida);
-                    if (result2) {
-                      JOptionPane.showMessageDialog(
-                        null,
-                        ge.mostrarProdutoPorId(id)
-                      );
-                    } else {
-                      JOptionPane.showMessageDialog(
-                        null,
-                        "Erro na alteração da quantidade atual do produto, favor tentar novamente"
-                      );
-                    }
+              boolean result2 = ge.removeQtdAtualProduto(id, qtdSaida);
+              if (result2) {
+                JOptionPane.showMessageDialog(null, ge.mostrarProdutoPorId(id));
+              } else {
+                JOptionPane.showMessageDialog(
+                  null,
+                  "Erro na alteração da quantidade atual do produto, favor tentar novamente"
+                );
+              }
               break;
-            case 3: // Consultar compras/tudo/categoria/id
-                
+            case 3: // Consultar
+              opcaoMenuConsulta = EntradaSaida.escolherOpcaoMenuConsulta();
+              switch (opcaoMenuConsulta) {
+                case 1: // Itens para comprar
+                  JOptionPane.showMessageDialog(
+                    null,
+                    ge.mostrarProdutoComprar()
+                  );
+                  break;
+                case 2: // Consulta por id
+                  id =
+                    EntradaSaida.solicitarId(
+                      "Insira o ID do produto que deseja buscar: "
+                    );
+                  seExiste = ge.seExiste(id);
+                  if (seExiste) {
+                    JOptionPane.showMessageDialog(
+                      null,
+                      ge.mostrarProdutoPorId(id)
+                    );
+                  } else {
+                    JOptionPane.showMessageDialog(
+                      null,
+                      "Produto não encontrado. Tente outro ID"
+                    );
+                  }
+                  break;
+                case 3: // Consulta por nome
+                  String nome = EntradaSaida.SolicitarDadosString(
+                    "Insira o nome que deseja buscar: "
+                  );
+                  seExiste = ge.seExisteByNome(nome);
+                  if (seExiste) {
+                    JOptionPane.showMessageDialog(
+                      null,
+                      ge.mostrarProdutoPorNome(nome)
+                    );
+                  } else {
+                    JOptionPane.showMessageDialog(
+                      null,
+                      "Produto não encontrado. Tente outro nome"
+                    );
+                  }
+                  break;
+                case 4: // Voltar menu
+                  categoria =
+                    EntradaSaida.SolicitarDadosString(
+                      "Insira o nome que deseja buscar: "
+                    );
+                  seExiste = ge.seExisteByNome(categoria);
+                  if (seExiste) {
+                    JOptionPane.showMessageDialog(
+                      null,
+                      ge.mostrarProdutoPorCategoria(categoria)
+                    );
+                  } else {
+                    JOptionPane.showMessageDialog(
+                      null,
+                      "Produto não encontrado. Tente outra categoria"
+                    );
+                  }
+                  break;
+                case 5: // Voltar menu
+                  break;
+              }
               break;
             case 4:
               //EntradaSaida.escolherOpcaoMenus();
               break;
           }
+          break;
         case 3: // Doadores
           opcaoMenuVoluntario = EntradaSaida.escolherOpcaoMenuVoluntario();
           switch (opcaoMenuVoluntario) {
