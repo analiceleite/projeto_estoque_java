@@ -345,12 +345,7 @@ public class Principal {
     } while (opcaoMenus != 0);
   }
 }
-// // case 3:
-// // Alterar descrição de alguma doação
-// EntradaSaida.solicitarId("ID");
-// JOptionPane.showMessageDialog(null, ge.alterarDescricaoDoacao(id));
-// break;
-// case 9:
-// // Motrar voluntários cadastrados:
-// EntradaSaida.mostrarCadastroVoluntario(gv.mostrarVoluntariosCadastrados());
-// break;
+// Verificar
+// 1. Verificar função de deletar
+// 2. Consulta por categoria
+// 3. Consulta por nome
