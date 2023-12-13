@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 public class Produto {
     private String categoria;
     private String nome;

@@ -64,7 +64,20 @@ public class EntradaSaida {
     }
 
     public static String SolicitarDadosString(String msg) {
-        return JOptionPane.showInputDialog(null, msg);
+
+           String a;
+        do{
+             a = JOptionPane.showInputDialog(null, msg);
+
+            if(a.equals("")){
+                
+                JOptionPane.showMessageDialog(null, "Você tende a digitar algo.");
+               
+            }
+         
+        }while(a.equals(""));
+        return a;       
+
     }
 
     public static int SolicitarDadosInt(String msg) {
@@ -132,6 +145,7 @@ public class EntradaSaida {
         return c1.getSelectedIndex()+1;
     }
     
+  
 
     // System.out.println("Insira o seu usuário: ");
     // String user = System.console().readLine();

@@ -260,49 +260,30 @@ public class Principal {
                     );
                   seExiste = ge.seExiste(id);
                   if (seExiste) {
-                    JOptionPane.showMessageDialog(
-                      null,
-                      ge.mostrarProdutoPorId(id)
-                    );
+                    JOptionPane.showMessageDialog(null,ge.mostrarProdutoPorId(id));
                   } else {
-                    JOptionPane.showMessageDialog(
-                      null,
-                      "Produto não encontrado. Tente outro ID"
-                    );
+                    JOptionPane.showMessageDialog(null,"Produto não encontrado. Tente outro ID");
                   }
                   break;
                 case 3: // Consulta por nome
-                  String nome = EntradaSaida.SolicitarDadosString(
-                    "Insira o nome que deseja buscar: "
-                  );
+                  String nome = EntradaSaida.SolicitarDadosString("Insira o nome que deseja buscar: ");
                   seExiste = ge.seExisteByNome(nome);
                   if (seExiste) {
-                    JOptionPane.showMessageDialog(
-                      null,
-                      ge.mostrarProdutoPorNome(nome)
-                    );
+                    JOptionPane.showMessageDialog(null,ge.mostrarProdutoPorNome(nome));
                   } else {
-                    JOptionPane.showMessageDialog(
-                      null,
-                      "Produto não encontrado. Tente outro nome"
+                    JOptionPane.showMessageDialog(null,"Produto não encontrado. Tente outro nome"
                     );
                   }
                   break;
                 case 4: // Voltar menu
                   categoria =
-                    EntradaSaida.SolicitarDadosString(
-                      "Insira o nome que deseja buscar: "
-                    );
+                    EntradaSaida.SolicitarDadosString("Insira o nome que deseja buscar: ");
                   seExiste = ge.seExisteByNome(categoria);
                   if (seExiste) {
-                    JOptionPane.showMessageDialog(
-                      null,
-                      ge.mostrarProdutoPorCategoria(categoria)
+                    JOptionPane.showMessageDialog(null,ge.mostrarProdutoPorCategoria(categoria)
                     );
                   } else {
-                    JOptionPane.showMessageDialog(
-                      null,
-                      "Produto não encontrado. Tente outra categoria"
+                    JOptionPane.showMessageDialog(null,"Produto não encontrado. Tente outra categoria"
                     );
                   }
                   break;
@@ -345,6 +326,7 @@ public class Principal {
     } while (opcaoMenus != 0);
   }
 }
+
 // Verificar
 // 1. Verificar função de deletar
 // 2. Consulta por categoria
