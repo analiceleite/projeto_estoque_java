@@ -8,7 +8,7 @@ public class EntradaSaida {
 
     String s1[] = {"1 - Produtos ", "2 - Doações", "3 - Doadores"};
 
-    JComboBox c1 = new JComboBox<>(s1);
+    JComboBox<String> c1 = new JComboBox<>(s1);
     String mensagem = "--------- Sistema de gerenciamento de doações  ---------";
     Object[] exibicaoUsuario = {mensagem, c1};
     JOptionPane.showMessageDialog(null, exibicaoUsuario);
@@ -20,7 +20,7 @@ public class EntradaSaida {
 
     String s1[] = {"1 - Cadastrar produto", "2 - Visualizar produtos cadastrados", "3 - Editar"};
 
-    JComboBox c1 = new JComboBox<>(s1);
+    JComboBox<String> c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar cadastro de doações ---------";
     Object[] exibicaoUsuario = {mensagem, c1};
     JOptionPane.showMessageDialog(null, exibicaoUsuario);
@@ -31,7 +31,7 @@ public class EntradaSaida {
     public static int escolherOpcaoMenuCategorias() {
     String s1[] = {"1 - Vestuário", "2 - Alimento ", "3 - Móveis", "4 - Dinheiro", "5 - Voltar ao menu principal" };
 
-    JComboBox c1 = new JComboBox<>(s1);
+    JComboBox<String> c1 = new JComboBox<>(s1);
     String mensagem = "Escolha a categoria da doação que deseja cadastrar: ";
     Object[] exibicaoUsuario = {mensagem, c1};
     JOptionPane.showMessageDialog(null, exibicaoUsuario);
@@ -43,7 +43,7 @@ public class EntradaSaida {
 
     String s1[] = {"1 - Doar", "2 - Retirar", "3 - Consultar", "4 - Voltar para o menu principal" };
 
-    JComboBox c1 = new JComboBox<>(s1);
+    JComboBox<String> c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar estoque de doações ---------";
     Object[] exibicaoUsuario = {mensagem, c1};
     JOptionPane.showMessageDialog(null, exibicaoUsuario);
@@ -55,7 +55,7 @@ public class EntradaSaida {
 
     String s1[] = {"1 - Realizar cadastro doador", "2 - Visualizar doadores cadastrados", "3 - Editar nome doador"};
 
-    JComboBox c1 = new JComboBox<>(s1);
+    JComboBox<String> c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar cadastro de voluntários ---------";
     Object[] exibicaoUsuario = {mensagem, c1};
     JOptionPane.showMessageDialog(null, exibicaoUsuario);
@@ -114,7 +114,7 @@ public class EntradaSaida {
         
     String s1[] = {"1 - Nome ", "2 - Categoria", "3 - Quantidade em estoque", "4 - Quantidade minima", "5 - Deletar"};
 
-    JComboBox c1 = new JComboBox<>(s1);
+    JComboBox<String> c1 = new JComboBox<>(s1);
     String mensagem = "--------- Edição do produto  ---------";
     Object[] exibicaoUsuario = {mensagem, c1};
     JOptionPane.showMessageDialog(null, exibicaoUsuario);
@@ -126,7 +126,7 @@ public class EntradaSaida {
         
     String s1[] = {"1 - Não ", "2 - Sim"};
 
-    JComboBox c1 = new JComboBox<>(s1);
+    JComboBox<String> c1 = new JComboBox<>(s1);
     String mensagem = ""+msg;
     Object[] exibicaoUsuario = {mensagem, c1};
     JOptionPane.showMessageDialog(null, exibicaoUsuario);
@@ -137,7 +137,7 @@ public class EntradaSaida {
     public static int escolherOpcaoMenuConsulta() {
         String s1[] = {"1 - Itens para comprar", "2 - Consulta por ID", "3 - Consulta por nome", "4 - Consulta por categoria", "5 - Voltar para o menu principal"};
 
-        JComboBox c1 = new JComboBox<>(s1);
+        JComboBox<String> c1 = new JComboBox<>(s1);
         String mensagem = "--------- Consultas ---------";
         Object[] exibicaoUsuario = {mensagem, c1};
         JOptionPane.showMessageDialog(null, exibicaoUsuario);

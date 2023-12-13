@@ -44,11 +44,11 @@ public class GestaoEstoque {
         d.getNome() +
         "\n " +
         quantidadeString +
-        "\n Atual: " +
+        "atual: " +
         d.getQuantidadeAtual() +
         "\n" +
         quantidadeString +
-        "\n Min: " +
+        "min: " +
         d.getQuantidadeMin() +
         "\n";
     }

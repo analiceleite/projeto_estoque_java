@@ -73,13 +73,10 @@ public class GestaoVoluntario {
 
   // Editar nome voluntário
   public String alterarNomeVoluntario(int idVoluntario) {
-    boolean encontrado = false;
 
     for (Voluntario v : this.listaDeVoluntarios) {
       int id = 0;
-
       if (v.getIdVoluntario() == id) {
-        encontrado = true;
         v.setNomeVoluntario(JOptionPane.showInputDialog("Informe o novo nome do doador: "));
       }
     }
