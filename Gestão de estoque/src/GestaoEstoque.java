@@ -44,11 +44,11 @@ public class GestaoEstoque {
         d.getNome() +
         "\n " +
         quantidadeString +
-        "atual: " +
+        " atual: " +
         d.getQuantidadeAtual() +
         "\n" +
         quantidadeString +
-        "min: " +
+        " min: " +
         d.getQuantidadeMin() +
         "\n";
     }
@@ -85,6 +85,7 @@ public class GestaoEstoque {
           try {
             this.doacoesCadastradas.remove(p);
             result = true;
+            break;
           } catch (Exception e) {
             result = false;
           }
@@ -341,8 +342,4 @@ public class GestaoEstoque {
     }
     return result;
   }
-  // Consultar doações em estoque por ID
-
-  // Consultar doações por categoria
-
 }

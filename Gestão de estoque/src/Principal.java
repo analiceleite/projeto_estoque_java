@@ -5,7 +5,6 @@ public class Principal {
   public static void main(String[] args) throws Exception {
     GestaoEstoque ge = new GestaoEstoque();
     GestaoVoluntario gv = new GestaoVoluntario();
-    boolean validarCadastroDoador = false;
     boolean seExiste = false;
     String categoria = "";
     int opcaoMenus = 0;
@@ -227,7 +226,3 @@ public class Principal {
   }
 }
 
-// Verificar
-// 1. Verificar função de deletar
-// 2. Consulta por categoria
-// 3. Consulta por nome
