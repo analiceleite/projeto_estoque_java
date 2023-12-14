@@ -143,7 +143,7 @@ public class GestaoEstoque {
           p.getCategoria() +
           "\nQuantidade em estoque: " +
           p.getQuantidadeAtual() +
-          "\nQuantidade minima permitida: " +
+          "\nQuantidade mínima permitida: " +
           p.getQuantidadeMin();
       }
     }
@@ -165,7 +165,7 @@ public class GestaoEstoque {
           p.getCategoria() +
           "\nQuantidade em estoque: " +
           p.getQuantidadeAtual() +
-          "\nQuantidade minima permitida: " +
+          "\nQuantidade mínima permitida: " +
           p.getQuantidadeMin();
       }
     }
@@ -187,7 +187,7 @@ public class GestaoEstoque {
           p.getCategoria() +
           "\nQuantidade em estoque: " +
           p.getQuantidadeAtual() +
-          "\nQuantidade minima permitida: " +
+          "\nQuantidade mínima permitida: " +
           p.getQuantidadeMin();
       }
     }
@@ -216,11 +216,11 @@ public class GestaoEstoque {
             p.getNome() +
             "\n " +
             quantidadeString +
-            "Atual: " +
+            " atual: " +
             p.getQuantidadeAtual() +
             "\n" +
             quantidadeString +
-            "Min: " +
+            " min: " +
             p.getQuantidadeMin() +
             "\n";
         }
@@ -332,7 +332,7 @@ public class GestaoEstoque {
           } else {
             JOptionPane.showMessageDialog(
               null,
-              "Erro na alteração da quantidade atual do produto. Valor final menor do que o minimo permitido"
+              "Erro na alteração da quantidade atual do produto. Valor final menor do que o minimo permitido! "
             );
           }
         } catch (Exception e) {

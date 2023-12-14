@@ -53,7 +53,7 @@ public class EntradaSaida {
 
     public static int escolherOpcaoMenuVoluntario() {
 
-    String s1[] = {"1 - Realizar cadastro doador", "2 - Visualizar doadores cadastrados", "3 - Editar nome doador"};
+    String s1[] = {"1 - Realizar cadastro doador", "2 - Visualizar doadores cadastrados", "3 - Editar dados"};
 
     JComboBox<String> c1 = new JComboBox<>(s1);
     String mensagem = "--------- Gerenciar cadastro de voluntários ---------";
@@ -96,7 +96,7 @@ public class EntradaSaida {
         try {
             par01 = Integer.parseInt(JOptionPane.showInputDialog(msg));
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Digite um cadastro valido");
+            JOptionPane.showMessageDialog(null, "Digite um cadastro válido! ");
             par01 = EntradaSaida.solicitarId(msg);
         }
         return par01;
@@ -145,11 +145,16 @@ public class EntradaSaida {
         return c1.getSelectedIndex()+1;
     }
     
-  
+    public static int escolherOpcaoMenuEditarVoluntario() {
+        
+    String s1[] = {"1 - Nome ", "2 - Idade", "3 - CPF", "4 - Endereço", "5 - Telefone", "6 - Voltar ao menu principal"};
 
-    // System.out.println("Insira o seu usuário: ");
-    // String user = System.console().readLine();
-    // return b.procurarUsuario(user, b);
-    // return JOption.showInputDialog("Insira o seu usuário")
+    JComboBox<String> c1 = new JComboBox<>(s1);
+    String mensagem = "--------- Edição dados do doador  ---------";
+    Object[] exibicaoUsuario = {mensagem, c1};
+    JOptionPane.showMessageDialog(null, exibicaoUsuario);
+
+    return c1.getSelectedIndex()+1;
+    }
 
 }

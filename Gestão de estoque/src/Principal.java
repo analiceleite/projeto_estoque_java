@@ -13,15 +13,15 @@ public class Principal {
     int opcaoCategorias = 0;
     int opcaoMenuVoluntario = 0;
     int opcaoMenuConsulta = 0;
+    int opcaoMenuEditarVoluntario = 0;
     int id = 0;
 
     do {
-      // Fazer a validação do login
 
       opcaoMenus = EntradaSaida.escolherOpcaoMenus();
       switch (opcaoMenus) {
         case 1: // Produtos
-          id = EntradaSaida.solicitarId("Acesso restrito!\nInsira seu ID de cadastro para continuar");
+          id = EntradaSaida.solicitarId("Acesso restrito!\nInsira seu ID de cadastro para continuar: ");
           if (gv.validarCadastroDoador(id)) {
             opcaoMenuPrincipal = EntradaSaida.escolherOpcaoMenuPrincipal();
 
@@ -167,7 +167,7 @@ public class Principal {
                   if (seExiste) {
                     JOptionPane.showMessageDialog(null, ge.mostrarProdutoPorId(id));
                   } else {
-                    JOptionPane.showMessageDialog(null, "Produto não encontrado. Tente outro ID");
+                    JOptionPane.showMessageDialog(null, "Produto não encontrado. Tente outro ID! ");
                   }
                   break;
                 case 3: // Consulta por nome
@@ -176,7 +176,7 @@ public class Principal {
                   if (seExiste) {
                     JOptionPane.showMessageDialog(null, ge.mostrarProdutoPorNome(nome));
                   } else {
-                    JOptionPane.showMessageDialog(null, "Produto não encontrado. Tente outro nome");
+                    JOptionPane.showMessageDialog(null, "Produto não encontrado. Tente outro nome! ");
                   }
                   break;
                 case 4: // Voltar menu
@@ -185,7 +185,7 @@ public class Principal {
                   if (seExiste) {
                     JOptionPane.showMessageDialog(null, ge.mostrarProdutoPorCategoria(categoria));
                   } else {
-                    JOptionPane.showMessageDialog(null, "Produto não encontrado. Tente outra categoria");
+                    JOptionPane.showMessageDialog(null, "Produto não encontrado. Tente outra categoria! ");
                   }
                   break;
                 case 5: // Voltar menu
@@ -208,16 +208,32 @@ public class Principal {
                   gv.mostrarVoluntariosCadastrados());
               break;
             case 3:
-              EntradaSaida.mostrarCadastroVoluntario(
-                  gv.alterarNomeVoluntario(id));
-              break;
-            case 4:
-              EntradaSaida.solicitarId("ID");
-              JOptionPane.showMessageDialog(null, ge.deletarDoacao(id));
-              EntradaSaida.escolherOpcaoMenuPrincipal();
-              break;
-            case 5:
-              EntradaSaida.escolherOpcaoMenus();
+              opcaoMenuEditarVoluntario = EntradaSaida.escolherOpcaoMenuEditarVoluntario();
+              switch (opcaoMenuEditarVoluntario) {
+                case 1: // Editar nome
+                id = EntradaSaida.solicitarId("Insira a identificação do doador cujo nome deseja editar: ");
+                gv.alterarNomeVoluntario(id);
+                break;
+                case 2: // Editar idade
+                id = EntradaSaida.solicitarId("Insira a identificação do doador cuja idade deseja editar: ");
+                gv.alterarIdadeVoluntario(id);
+                break;
+                case 3: // Editar CPF
+                id = EntradaSaida.solicitarId("Insira a identificação do doador cujo CPF deseja editar: ");
+                gv.alterarCpfVoluntario(id);
+                break;
+                case 4: // Editar endereço
+                id = EntradaSaida.solicitarId("Insira a identificação do doador cujo endereço deseja editar: ");
+                gv.alterarEnderecoVoluntario(id);
+                break;
+                case 5: // Editar telefone
+                id = EntradaSaida.solicitarId("Insira o identificador do doador cujo telefone deseja editar: ");
+                gv.alterarTelefoneVoluntario(id);
+                break;
+                case 6: // Voltar ao menu principal
+                EntradaSaida.escolherOpcaoMenus();
+                break;
+              }
               break;
           }
           break;

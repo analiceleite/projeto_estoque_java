@@ -75,14 +75,14 @@ public class GestaoVoluntario {
   public String alterarNomeVoluntario(int idVoluntario) {
 
     for (Voluntario v : this.listaDeVoluntarios) {
-      int id = 0;
-      if (v.getIdVoluntario() == id) {
+      if (v.getIdVoluntario() == idVoluntario) {
         v.setNomeVoluntario(JOptionPane.showInputDialog("Informe o novo nome do doador: "));
       }
     }
     return ("Nome alterado com sucesso! ");
   }
 
+  // Validação de cadastro
   public boolean validarCadastroDoador(int idVoluntario) {
     boolean cadastroValido = false;
     boolean voluntarioValido = false;
@@ -100,4 +100,49 @@ public class GestaoVoluntario {
     }
     return cadastroValido;
   }
+
+  // Editar idade voluntário
+  public String alterarIdadeVoluntario(int idVoluntario) {
+
+    for (Voluntario v : this.listaDeVoluntarios) {
+      if (v.getIdVoluntario() == idVoluntario) {
+        v.setIdadeVoluntario (Integer.parseInt(JOptionPane.showInputDialog("Informe a idade do doador: ")));
+      }
+    }
+    return ("Idade alterada com sucesso! ");
+  }
+
+
+  // Editar cpf voluntário 
+   public String alterarCpfVoluntario(int idVoluntario) {
+
+    for (Voluntario v : this.listaDeVoluntarios) {
+      if (v.getIdVoluntario() == idVoluntario) {
+        v.setCpfVoluntario (JOptionPane.showInputDialog("Informe o CPF atualizado do doador: "));
+      }
+    }
+    return ("CPF alterado com sucesso! ");
+  }
+
+  // Editar endereço voluntário
+  public String alterarEnderecoVoluntario (int idVoluntario) {
+
+    for (Voluntario v : this.listaDeVoluntarios) {
+      if (v.getIdVoluntario() == idVoluntario) {
+        v.setEnderecoVoluntario(JOptionPane.showInputDialog("Informe o novo endereço do doador: "));
+      }
+    }
+    return ("CPF alterado com sucesso! ");
+  }
+  // Editar telefone voluntário
+   public String alterarTelefoneVoluntario (int idVoluntario) {
+
+    for (Voluntario v : this.listaDeVoluntarios) {
+      if (v.getIdVoluntario() == idVoluntario) {
+        v.setTelefone(JOptionPane.showInputDialog("Informe o novo telefone para contato do doador: "));
+      }
+    }
+    return ("Contato alterado com sucesso! ");
+  }
+
 }

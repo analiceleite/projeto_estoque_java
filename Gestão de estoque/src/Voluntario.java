@@ -9,6 +9,7 @@ public class Voluntario {
     private String cpfVoluntario;
     private String enderecoVoluntario;
     private String telefone;
+    
     public int getIdVoluntario() {
         return idVoluntario;
     }
