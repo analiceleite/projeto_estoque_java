@@ -12,13 +12,7 @@ public class GestaoEstoque {
   public ArrayList<Produto> doacoesCadastradas = new ArrayList<Produto>();
 
   public void cadastrarProduto(Produto Produto) {
-    int id = 1;
-    for (Produto d : this.doacoesCadastradas) {
-      if (d.getId() >= id) {
-        id = d.getId() + 1;
-      }
-    }
-    Produto.setId(id);
+
     this.doacoesCadastradas.add(Produto);
   }
 

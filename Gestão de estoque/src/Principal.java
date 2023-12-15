@@ -15,6 +15,7 @@ public class Principal {
     int opcaoMenuConsulta = 0;
     int opcaoMenuEditarVoluntario = 0;
     int id = 0;
+    int cont = 0;
 
     do {
 
@@ -43,7 +44,14 @@ public class Principal {
                     EntradaSaida.escolherOpcaoMenuCategorias();
                   }
 
-                  p.setNome(EntradaSaida.SolicitarDadosString("Insira o nome do produto: "));
+                  if(cont== 0){
+                    p.setId(cont+1);
+                    cont++;
+                  }else{
+                    cont++;
+                    p.setId(cont);
+                  }
+                                    p.setNome(EntradaSaida.SolicitarDadosString("Insira o nome do produto: "));
                   p.setQuantidadeAtual(EntradaSaida.SolicitarDadosInt("Insira a quantidade atual: "));
                   p.setQuantidadeMin(EntradaSaida.SolicitarDadosInt("Insira a quantidade minima: "));
 
